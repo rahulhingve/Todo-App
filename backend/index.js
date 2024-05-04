@@ -30,13 +30,18 @@ app.post("/todo", async function(req, res) {
 })
 
 app.get("/todos", async function(req, res) {
-    // const todos = await todo.find({});
-
-    res.json({
-        todos: []
-    })
-
-})
+    try {
+        const todos = await todo.find({});
+        res.json({
+            
+            todos: todos
+        });
+    } catch (error) {
+        res.status(500).json({
+            msg: "Internal server error"
+        });
+    }
+});
 
 app.put("/completed", async function(req, res) {
     const updatePayload = req.body;
