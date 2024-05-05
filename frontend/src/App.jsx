@@ -8,6 +8,7 @@ import { Todos } from './components/Todos'
 // useEffect hook
 function App() {
   const [todos, setTodos] = useState([]);
+  const [filterText, setFilterText] = useState('');
 
   useEffect(() => {
     fetch("http://localhost:3000/todos")
@@ -17,13 +18,24 @@ function App() {
       });
   }, []);
 
+  const filterTodos = (todos, filterText) => {
+    return todos.filter(todo =>
+      todo.title.toLowerCase().includes(filterText.toLowerCase()) ||
+      todo.description.toLowerCase().includes(filterText.toLowerCase())
+    );
+  };
 
   return (
     <div>
-      <CreateTodo></CreateTodo>
-      <Todos todos={todos}></Todos>
+      <CreateTodo />
+      <input
+        type="text"
+        placeholder="Search Todos"
+        value={filterText}
+        onChange={(e) => setFilterText(e.target.value)}/>
+      <Todos todos={filterTodos(todos, filterText)} />
     </div>
-  )
+  );
 }
 
 export default App
