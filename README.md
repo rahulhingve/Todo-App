@@ -12,9 +12,12 @@ Creating an simple Todo App with the help React
 -  2 Components
    - create todo
    - render Todos
+## Extra feature
+Added filter
+
 
 ## things to fix 
-- Infinite request to get todos 
-- implement update todos
+- ~Infinite request to get todos~ Done ✅
+- ~implement update todos~ Done ✅
 - And a good ui 😊
 
